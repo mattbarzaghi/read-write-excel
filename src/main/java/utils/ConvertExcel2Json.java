@@ -18,15 +18,15 @@ public class ConvertExcel2Json {
 
     public static void main(String[] args) {
         // Step 1: Read Excel File into Java List Objects
-        List<Customer> customers = readExcelFile();
+        List<Portafoglio> portafoglios = readExcelFile();
 
         // Step 2: Convert Java Objects to JSON String
-        String jsonString = convertObjects2JsonString(customers);
+        String jsonString = convertObjects2JsonString(portafoglios);
 
         System.out.println(jsonString);
     }
 
-    private static List<Customer> readExcelFile(){
+    private static List<Portafoglio> readExcelFile(){
         try {
             FileInputStream excelFile = new FileInputStream("C:\\Users\\matte\\IdeaProjects\\read-write-excel\\data\\customers-1.xlsx");
             Workbook workbook = new XSSFWorkbook(excelFile);
@@ -34,7 +34,7 @@ public class ConvertExcel2Json {
             Sheet sheet = workbook.getSheet("Customers");
             Iterator<Row> rows = sheet.iterator();
 
-            List<Customer> lstCustomers = new ArrayList<>();
+            List<Portafoglio> lstPortafoglios = new ArrayList<>();
 
             int rowNumber = 0;
             while (rows.hasNext()) {
@@ -48,7 +48,7 @@ public class ConvertExcel2Json {
 
                 Iterator<Cell> cellsInRow = currentRow.iterator();
 
-                Customer cust = new Customer();
+                Portafoglio cust = new Portafoglio();
 
                 int cellIndex = 0;
                 while (cellsInRow.hasNext()) {
@@ -67,24 +67,24 @@ public class ConvertExcel2Json {
                     cellIndex++;
                 }
 
-                lstCustomers.add(cust);
+                lstPortafoglios.add(cust);
             }
 
             // Close WorkBook
             workbook.close();
 
-            return lstCustomers;
+            return lstPortafoglios;
         } catch (IOException e) {
             throw new RuntimeException("FAIL! -> message = " + e.getMessage());
         }
     }
 
-    private static String convertObjects2JsonString(List<Customer> customers) {
+    private static String convertObjects2JsonString(List<Portafoglio> portafoglios) {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = "";
 
         try {
-            jsonString = mapper.writeValueAsString(customers);
+            jsonString = mapper.writeValueAsString(portafoglios);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

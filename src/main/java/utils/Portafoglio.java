@@ -1,6 +1,6 @@
 package utils;
 
-public class Customer {
+public class Portafoglio {
 
     String id;
     String name;
