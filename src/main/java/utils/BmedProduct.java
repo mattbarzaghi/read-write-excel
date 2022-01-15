@@ -1,6 +1,6 @@
 package utils;
 
-public class Simulate {
+public class BmedProduct {
 
     String codiceTipoProdottoServizio;
     String codiceSurrogatoProdottoMIFID;

@@ -1,6 +1,6 @@
 package utils;
 
-public class Portafoglio {
+public class Person {
 
     String id;
     String name;
